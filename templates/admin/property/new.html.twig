@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container mt-2 w-75 bg-body">
+        <h2 class="text-center w-100" style="text-decoration: underline;">
+            Ajouter un bien
+        </h2>
+        {{  include ('admin/property/_form.html.twig',{form: form, button:'Ajouter',icon:'save'}) }}
+    </div>
+{% endblock %}

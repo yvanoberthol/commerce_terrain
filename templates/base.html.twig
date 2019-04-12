@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap_spacelab.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+        <style>
+            .bg-body{
+                background-color: lightblue;
+                padding-bottom: 30px;
+            }
+        </style>
+        {% block stylesheets %}
+
+        {% endblock %}
+    </head>
+    <body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mt-1">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand text-warning" href="{{ path('properties.index') }}">Ma super agence</a>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('properties.index') }}">Acheter <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin.property.index') }}">Administration</a>
+                    </li>
+                </ul>
+                {% if app.user %}
+                    <ul class="navbar-nav pull-right">
+                        <li class="nav-item">
+                            <a class="nav-link " href="{{ path('logout') }}" tabindex="-1" aria-disabled="true">
+                              <span class="fa fa-sign-out"></span>  Se déconnecter
+                            </a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+        {% block body %}
+
+        {% endblock %}
+    </div>
+
+    {% block javascripts %}
+
+    {% endblock %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('select').select2();
+            $('.nav-link').click(function () {
+                this.parent('.nav-item').addClass('active')
+            });
+        });
+
+    </script>
+    </body>
+</html>

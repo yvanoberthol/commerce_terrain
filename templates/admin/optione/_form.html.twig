@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+<div class="row">
+    {{ form_errors(form) }}
+</div>
+<div class="row mt-4">
+    <div class="col-md-12">
+        {{ form_row(form.name) }}
+    </div>
+</div>
+<button type="submit" class="btn btn-primary">
+    <span class="fa fa-{{ icon }}"></span> {{ button|default('Do') }}
+</button>
+<a href="{{ path('admin.optione.index') }}" class="ml-4">Retour à la liste des options</a>
+{{ form_end(form) }}

@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Les biens
+{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron bg-secondary text-center mt-2 w-100">
+                <h1>Ma super agence</h1>
+                <p class="text-white">Bienvenue dans ma super agence. Ici nous commercialisons les biens</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="jumbotron w-100" style="background-color: #E5F9E7">
+                <div class="container">
+                     {{ form_start(formSearch) }}
+                        <div class="form-row align-items-end">
+                            <div class="col">
+                                {{ form_row(formSearch.minsurface) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(formSearch.maxprice) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(formSearch.optiones) }}
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <button class="btn btn-secondary">
+                                        <span class="fa fa-search"></span> Rechercher
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                     {{ form_end(formSearch) }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h1 class="text-center bg-dark text-white-50 w-100">Voir tous nos biens</h1>
+        </div>
+        <div class="row">
+                {% for property in properties %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            {% if property.fileName %}
+                            <div>
+                                    <img src="{{ asset('images/properties/'~property.fileName) }}" alt=""
+                                         style="width: 100%;height: 150px;">
+                            </div>
+                            {% else %}
+                            {% endif %}
+                            <div class="card-body" style="border: black 1px solid;">
+                                <div class="card-text">
+                                    <p> <a class="text-primary font-weight-bold" href="{{ path('properties.show',{slug:property.slug,id:property.id})}}">{{ property.title }}</a></p>
+                                    <p>{{ property.surface }}m² - {{ property.city }}({{  property.postalCode}})</p>
+                                    <p class="text-primary font-weight-bold" style="font-size:1.5rem">
+                                        {{ property.formattedPrice}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+        <div class="row">
+            <div class="navigation">
+                {{ knp_pagination_render(properties) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
