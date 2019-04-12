@@ -13,7 +13,7 @@
                                 <img src="{{ vich_uploader_asset(property,'imageFile') | imagine_filter('thumb') }}" alt=""
                                      style="width: 100%;height: auto;">
                             {% else %}
-                                <img src="{{ '/images/properties/empty.jpg' | imagine_filter('thumb') }}" alt=""
+                                <img src="{{ asset('images/properties/empty.jpg') | imagine_filter('thumb') }}" alt=""
                                      style="width: 100%;height: auto;">
                             {% endif %}
                         </div>
@@ -28,6 +28,27 @@
                     <a href="#" class="btn btn-primary">
                        <span class="fa fa-phone-square"></span> Contacter l'agence
                     </a>
+                    {% for message in app.flashes('succes') %}
+                    <div class="alert alert-success mt-2">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    <div id="contactForm" class="mt-4">
+                        {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col">{{ form_row(form.firstname) }}</div>
+                            <div class="col">{{ form_row(form.lastname) }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">{{ form_row(form.email) }}</div>
+                            <div class="col">{{ form_row(form.phone) }}</div>
+                        </div>
+                        {{ form_rest(form) }}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
                 </div>
             </div>
         </div>

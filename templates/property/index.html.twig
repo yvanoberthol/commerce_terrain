@@ -51,6 +51,8 @@
                                          style="width: 100%;height: 150px;">
                             </div>
                             {% else %}
+                                <img src="{{ asset('images/properties/empty.jpg') | imagine_filter('thumb') }}" alt=""
+                                     style="width: 100%;height: auto;">
                             {% endif %}
                             <div class="card-body" style="border: black 1px solid;">
                                 <div class="card-text">
